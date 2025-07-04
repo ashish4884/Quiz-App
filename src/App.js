@@ -6,7 +6,6 @@ import LoaderScreen from "./components/LoaderScreen";
 import EmailInputForm from "./components/EmailInputForm";
 import ThankYouScreen from "./components/ThankYouScreen";
 
-import "./i18n";
 
 const App = () => {
   return (
