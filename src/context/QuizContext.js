@@ -17,9 +17,6 @@ export const QuizProvider = ({ children }) => {
 
   const langCodeMap = {
     English: "en", French: "fr", German: "de", Spanish: "es",
-    Anglais: "en", Français: "fr", Allemand: "de", Espagnol: "es",
-    Englisch: "en", Französisch: "fr", Deutsch: "de", Spanisch: "es",
-    Inglés: "en", Francés: "fr", Alemán: "de", Español: "es",
   };
 
   const updateAnswers = (newAnswer) => {

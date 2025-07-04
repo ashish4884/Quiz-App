@@ -94,12 +94,15 @@ const EmailInputForm = () => {
         )}
 
         <p className="text-xs text-gray-400 mt-6 mb-10">
-          {t.agreement}{" "}
+          {t.agreement}
           <span className="text-pink-500 underline cursor-pointer">{t.privacy}</span>{" "}
           {language === "fr" || language === "de" ? "" : "and"}{" "}
           <span className="text-pink-500 underline cursor-pointer">{t.terms}</span>
         </p>
 
+                  
+                  
+              
         <button
           onClick={handleSubmit}
           disabled={!isEmailValid}
