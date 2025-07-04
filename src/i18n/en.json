@@ -1,0 +1,10 @@
+{
+  "languageQuestion": "What is your preferred language?",
+  "genderQuestion": "What gender do you identify with?",
+  "ageQuestion": "What is your age?",
+  "next": "Next",
+  "invalidEmail": "Invalid email",
+  "download": "Download my answers",
+  "retake": "Retake quiz",
+  "thankYou": "Thank you for completing the quiz!"
+}

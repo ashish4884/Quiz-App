@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QuizProvider } from "./context/QuizContext";
+import QuizQuestion from "./components/QuizQuestion";
+import LoaderScreen from "./components/LoaderScreen";
+import EmailInputForm from "./components/EmailInputForm";
+import ThankYouScreen from "./components/ThankYouScreen";
 
-function App() {
+import "./i18n";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <QuizProvider>
+        <Routes>
+          {/* <Route path="/" element={<LanguageSelector />} /> */}
+          {/* <Route path="/quiz" element={<QuizQuestion />} /> */}
+          <Route path="/" element={<QuizQuestion />} />
+          <Route path="/loader" element={<LoaderScreen />} />
+          <Route path="/email" element={<EmailInputForm />} />
+          <Route path="/thank-you" element={<ThankYouScreen />} />
+        </Routes>
+      </QuizProvider>
+    </Router>
   );
-}
+};
 
 export default App;

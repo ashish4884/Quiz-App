@@ -1,0 +1,10 @@
+{
+  "languageQuestion": "Was ist Ihre bevorzugte Sprache?",
+  "genderQuestion": "Welches Geschlecht haben Sie?",
+  "ageQuestion": "Wie alt sind Sie?",
+  "next": "Weiter",
+  "invalidEmail": "Ungültige E-Mail",
+  "download": "Meine Antworten herunterladen",
+  "retake": "Quiz erneut starten",
+  "thankYou": "Danke für das Ausfüllen des Quiz!"
+}
