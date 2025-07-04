@@ -64,7 +64,14 @@ const EmailInputForm = () => {
     navigate("/thank-you");
   };
 
-  const isInvalid = emailInput && !validateEmail(emailInput);
+  const handleChange = (e) => {
+    setEmailInput(e.target.value);
+    if (error) setError("");
+  };
+
+  const isEmailValid = validateEmail(emailInput);
+  const isTouched = emailInput.length > 0;
+  const showError = !isEmailValid && isTouched;
 
   return (
     <div className="min-h-screen bg-[#1e002e] text-white flex items-center justify-center px-4">
@@ -76,33 +83,28 @@ const EmailInputForm = () => {
           type="email"
           placeholder={t.placeholder}
           value={emailInput}
-          onChange={(e) => {
-            setEmailInput(e.target.value);
-            setError("");
-          }}
-          className={`w-full bg-[#2a003d] text-white placeholder-gray-400 p-4 rounded-xl focus:outline-none border ${
-            isInvalid || error ? "border-red-500" : "border-transparent"
+          onChange={handleChange}
+          className={`w-full bg-[#2a003d] text-white placeholder-gray-400 p-4 rounded-xl focus:outline-none border transition ${
+            showError ? "border-red-500" : "border-transparent"
           }`}
         />
 
-        {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
+        {showError && (
+          <p className="text-red-500 mt-2 text-sm">{t.error}</p>
+        )}
 
         <p className="text-xs text-gray-400 mt-6 mb-10">
           {t.agreement}{" "}
-          <span className="text-pink-500 underline cursor-pointer">
-            {t.privacy}
-          </span>{" "}
-          {t.language === "fr" || t.language === "de" ? "" : "and"}{" "}
-          <span className="text-pink-500 underline cursor-pointer">
-            {t.terms}
-          </span>
+          <span className="text-pink-500 underline cursor-pointer">{t.privacy}</span>{" "}
+          {language === "fr" || language === "de" ? "" : "and"}{" "}
+          <span className="text-pink-500 underline cursor-pointer">{t.terms}</span>
         </p>
 
         <button
           onClick={handleSubmit}
-          disabled={!validateEmail(emailInput)}
+          disabled={!isEmailValid}
           className={`w-full py-4 rounded-full font-semibold text-lg transition ${
-            !validateEmail(emailInput)
+            !isEmailValid
               ? "bg-[#5c1a5d] opacity-50 cursor-not-allowed"
               : "bg-[#a62fc2] hover:bg-[#c035d8]"
           }`}
