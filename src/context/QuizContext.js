@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React from "react";
+import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import questionsData from "../data/questions";
 
@@ -15,6 +16,7 @@ export const QuizProvider = ({ children }) => {
 
   const currentQuestion = questionsData[language]?.[currentQuestionIndex];
 
+
   const langCodeMap = {
     English: "en", French: "fr", German: "de", Spanish: "es",
   };
@@ -28,6 +30,8 @@ export const QuizProvider = ({ children }) => {
 
   const goToNext = () => {
     const hasNext = currentQuestionIndex + 1 < questionsData[language].length;
+
+   
     if (hasNext) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
@@ -38,8 +42,10 @@ export const QuizProvider = ({ children }) => {
   const handleSingleAnswer = (selectedOption) => {
     const question = currentQuestion;
 
+
     if (question?.isLanguageQuestion) {
       const selectedLang = langCodeMap[selectedOption];
+      console.log("Selected Language Code:", selectedLang);
       if (selectedLang) {
         setLanguage(selectedLang);
         setCurrentQuestionIndex(1); 

@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuiz } from "../context/QuizContext";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -8,6 +9,8 @@ const QuizHeader = () => {
   const navigate = useNavigate();
 
   const totalQuestions = language ? questionsData[language]?.length : 0;
+
+  console.log("currentQuestionIndex",currentQuestionIndex);
 
   const handleBack = () => {
     if (currentQuestionIndex > 0) {

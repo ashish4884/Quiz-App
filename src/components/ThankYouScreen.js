@@ -1,8 +1,10 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext";
 import { downloadCSV } from "../utils/csvExporter";
 import { Check } from "lucide-react";
 import "tailwindcss/tailwind.css";
+
 
 const translations = {
   en: {
@@ -32,7 +34,13 @@ const translations = {
 };
 
 const ThankYouScreen = () => {
+
+console.log("✅ ThankYouScreen mounted2");
   const { answers, resetQuiz, email, language } = useQuiz();
+
+  console.log("ThankYouScreen answers:", answers);
+  console.log("ThankYouScreen email:", email);
+  console.log("ThankYouScreen language:", language);
   const navigate = useNavigate();
 
   const t = translations[language] || translations["en"];

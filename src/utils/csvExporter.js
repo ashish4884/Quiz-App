@@ -27,6 +27,7 @@ export const downloadCSV = (answers, email, language) => {
     });
   });
 
+  // Final entry: user email
   csvData.push({
     order: csvData.length + 1,
     title: "Email",
@@ -56,7 +57,7 @@ export const downloadCSV = (answers, email, language) => {
 function stripEmojis(text) {
   if (!text) return "";
   return text.replace(
-    /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|\uFE0F|\u200D)+/g,
+    /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|\uFE0F|\u200D)+/gu,
     ""
   ).trim();
 }

@@ -1,3 +1,4 @@
+import React from "react";
 const QuizOption = ({ text, onSelect, selected = false, isBubble = false }) => {
   return (
     <button
@@ -16,7 +17,7 @@ const QuizOption = ({ text, onSelect, selected = false, isBubble = false }) => {
 
       {/* non-bubble-type */}
       {selected && !isBubble && (
-        <span className="ml-auto text-green-300 font-bold">✓</span>
+        <span className="ml-auto text-green-200 font-bold">✓</span>
       )}
     </button>
   );
