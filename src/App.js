@@ -13,7 +13,6 @@ const App = () => {
       <QuizProvider>
         <Routes>
           {/* <Route path="/" element={<LanguageSelector />} /> */}
-          {/* <Route path="/quiz" element={<QuizQuestion />} /> */}
           <Route path="/" element={<QuizQuestion />} />
           <Route path="/loader" element={<LoaderScreen />} />
           <Route path="/email" element={<EmailInputForm />} />

@@ -16,6 +16,7 @@ const QuizOption = ({ text, onSelect, selected = false, isBubble = false }) => {
       </span>
 
       {/* non-bubble-type */}
+      
       {selected && !isBubble && (
         <span className="ml-auto text-green-200 font-bold">✓</span>
       )}

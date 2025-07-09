@@ -6,6 +6,7 @@ import QuizOption from "./QuizOption";
 import QuizHeader from "./QuizHeader";
 
 const QuizQuestion = () => {
+  // Accessing  context values
   const {
     currentQuestion,
     currentQuestionIndex,
@@ -19,10 +20,13 @@ const QuizQuestion = () => {
 
   const navigate = useNavigate();
 
+  // Redirect if quiz language or current question is not set
   useEffect(() => {
     if (!language) navigate("/");
     else if (!currentQuestion) navigate("/loader");
   }, [language, currentQuestion, navigate]);
+
+  // Boolean flags for different question types and conditions
 
   const isMulti = currentQuestion?.type === "multi";
   const isBubble = currentQuestion?.isBubble;
@@ -34,7 +38,7 @@ const QuizQuestion = () => {
     currentQuestion?.title === "What do you hate the most in a book?";
   const isDisabled = isMulti && multiAnswer.length === 0;
 
-
+  // Shuffle options for favorite topics to add randomness
   const shuffledOptions = useMemo(() => {
     if (!currentQuestion) return [];
     return isFavTopics
@@ -42,10 +46,13 @@ const QuizQuestion = () => {
       : currentQuestion.options;
   }, [currentQuestion, isFavTopics]);
 
+  // Handle option click (single or multi select)
+
   const handleOptionClick = (option) => {
     isMulti ? toggleMultiSelect(option) : handleAnswer(option);
   };
 
+  // Get selected option for single-answer questions
   const selectedOption = !isMulti
     ? answers[currentQuestionIndex]?.answer
     : null;
@@ -70,6 +77,7 @@ const QuizQuestion = () => {
           </p>
         )}
 
+        {/* Special layout for gender question */}
         {isGenderQuestion ? (
           <div className="flex gap-4 flex-wrap justify-center pt-2">
             {currentQuestion.options.map((option, index) => {
@@ -92,6 +100,7 @@ const QuizQuestion = () => {
             })}
           </div>
         ) : (
+          // Render all other question types using QuizOption component
           <div
             className={`gap-3 ${
               isBubble
@@ -118,6 +127,7 @@ const QuizQuestion = () => {
           </div>
         )}
 
+        {/* Submit button for multi-select questions */}
         {isMulti && (
           <div className="pt-4 text-center">
             <button

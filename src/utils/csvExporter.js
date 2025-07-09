@@ -2,6 +2,7 @@ export const downloadCSV = (answers, email, language) => {
   const headers = ["order", "title", "type", "answer"];
   const csvData = [];
 
+  // Add language  as the first entry
   csvData.push({
     order: 1,
     title: "What is your preferred language?",
@@ -9,7 +10,9 @@ export const downloadCSV = (answers, email, language) => {
     answer: language,
   });
 
-  const uniqueTitles = new Set();
+  const uniqueTitles = new Set(); // To track unique question titles
+
+  // Process and format each answer
 
   answers.forEach((item, index) => {
     if (uniqueTitles.has(item.title)) return;
@@ -27,7 +30,8 @@ export const downloadCSV = (answers, email, language) => {
     });
   });
 
-  // Final entry: user email
+  // Add user email as the last entry
+
   csvData.push({
     order: csvData.length + 1,
     title: "Email",
@@ -35,12 +39,16 @@ export const downloadCSV = (answers, email, language) => {
     answer: email,
   });
 
+  // Convert all data to CSV format
+
   const csvRows = [
-    headers.join(","), 
+    headers.join(","),
     ...csvData.map(({ order, title, type, answer }) =>
       [order, `"${title}"`, type, `"${answer}"`].join(",")
     ),
   ];
+
+  // Create and trigger CSV file download
 
   const blob = new Blob(["\uFEFF" + csvRows.join("\n")], {
     type: "text/csv;charset=utf-8;",
@@ -54,14 +62,19 @@ export const downloadCSV = (answers, email, language) => {
   URL.revokeObjectURL(url);
 };
 
+// Utility to remove emojis from a given string
+
 function stripEmojis(text) {
   if (!text) return "";
-  return text.replace(
-    /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|\uFE0F|\u200D)+/gu,
-    ""
-  ).trim();
+  return text
+    .replace(
+      /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|\uFE0F|\u200D)+/gu,
+      ""
+    )
+    .trim();
 }
 
+// Determines question type based on context and title
 function determineType(item) {
   const title = item.title.toLowerCase();
 
